@@ -32,15 +32,28 @@ public class servlet2 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-              Cookie ck[]=request.getCookies();
-          
-    out.print("Salut "+ck[3].getValue());  
-            for (int i = 0; i < ck.length; i++) {
-                out.print(ck[i].getValue() + "<br>");
-                
+
+            Cookie ckTab[] = request.getCookies();
+
+            int i = 0;
+            boolean cherche = false;
+
+            while (cherche == false) {
+                if (ckTab == null) {
+                    out.print("<form action=\"servlet1\" method=\"post\" style=\"font-size: 50px\">  \n"
+                            + "Nom:<input style=\"font-size: 50px\" type=\"text\" name=\"nom\"/><br/>  \n"
+                            + "Prenom:<input style=\"font-size: 50px\" type=\"text\" name=\"prenom\"/><br/>\n"
+                            + "<input style=\"background-color: green;font-size: 50px\" type=\"submit\" value=\"valider\"/>");
+
+                }
+                if (ckTab[i].getName().equals("prenom")) {
+
+                    out.print("<p style=\"font-size: 50px\">Bienvenue " + ckTab[i].getValue() + "</p><br>");
+
+                } 
+                i++;
             }
-    out.close();  
+
         }
     }
 

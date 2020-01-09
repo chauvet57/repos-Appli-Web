@@ -16,6 +16,7 @@
         <servlet-name>servlet2</servlet-name>
         <url-pattern>/servlet2</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

@@ -36,19 +36,18 @@ public class servlet1 extends HttpServlet {
           
     String nom = request.getParameter("nom"); 
     String prenom = request.getParameter("prenom");
-    out.print("Bienvenue "+prenom);  
-  
-    Cookie ck=new Cookie("prenom", prenom);//creation de l'objet cookie  
-  ck.setMaxAge(60);
-    response.addCookie(ck);//ajout du cookie a la reponse 
     
-  
-    //creation du bouton  
-    out.print("<form action='servlet2'>");  
-    out.print("<input type='submit' value='go'>");  
-    out.print("</form>");  
-          
-    out.close();  
+    out.print("<p style=\"font-size: 50px\">Bienvenue " + prenom + "</p><br>");
+    //creation de l'objet cookie
+    Cookie ck=new Cookie("prenom", prenom);
+    Cookie ckn=new Cookie("nom", nom);
+    
+    ck.setMaxAge(120);
+    ckn.setMaxAge(120);
+  //ajout du cookie a la reponse 
+    response.addCookie(ck);
+    response.addCookie(ckn);
+    
         }
     }
 
