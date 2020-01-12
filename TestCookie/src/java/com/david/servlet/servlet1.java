@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,13 +38,24 @@ public class servlet1 extends HttpServlet {
     String nom = request.getParameter("nom"); 
     String prenom = request.getParameter("prenom");
     
+    //affichage 
     out.print("<p style=\"font-size: 50px\">Bienvenue " + prenom + "</p><br>");
+    out.print("<p style=\"font-size: 50px\">Session " + nom + "</p><br>");
+    
+   // Création ou récupération de la session
+    HttpSession session = request.getSession();
+
+    //Enregistrement de la variable login en session
+    session.setAttribute( "nom", nom );  
+    
     //creation de l'objet cookie
     Cookie ck=new Cookie("prenom", prenom);
     Cookie ckn=new Cookie("nom", nom);
     
-    ck.setMaxAge(120);
-    ckn.setMaxAge(120);
+    //donnée une durée a ses cookies
+    ck.setMaxAge(60*10);
+    ckn.setMaxAge(60*10);
+    
   //ajout du cookie a la reponse 
     response.addCookie(ck);
     response.addCookie(ckn);

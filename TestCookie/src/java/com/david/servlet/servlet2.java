@@ -7,11 +7,13 @@ package com.david.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,9 +34,11 @@ public class servlet2 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
-            Cookie ckTab[] = request.getCookies();
-
+            
+        Cookie ckTab[] = request.getCookies();
+            
+           String session = (String) request.getSession().getAttribute("nom");
+            
             int i = 0;
             boolean cherche = false;
 
@@ -49,8 +53,8 @@ public class servlet2 extends HttpServlet {
                 if (ckTab[i].getName().equals("prenom")) {
 
                     out.print("<p style=\"font-size: 50px\">Bienvenue " + ckTab[i].getValue() + "</p><br>");
-
-                } 
+                    out.print("<p style=\"font-size: 50px\">Bienvenue " + session + "</p><br>");
+             } 
                 i++;
             }
 
